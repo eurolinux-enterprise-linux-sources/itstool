@@ -1,6 +1,6 @@
 Name:           itstool
 Version:        1.2.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        ITS-based XML translation tool
 
 Group:          Development/Tools
@@ -33,6 +33,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %doc %{_mandir}/man1/itstool.1.gz
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.2.0-4
+- Mass rebuild 2013-12-27
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
