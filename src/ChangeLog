@@ -1,3 +1,1148 @@
+commit 6596a9cd30e4c1ff8599caf724e2aed3dd6947bf
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Dec 17 22:14:43 2013 -0500
+
+    itstool.1: Update man page
+
+ itstool.1.in |  137 ++++++++++++++++++++++++++++++++++++++--------------------
+ itstool.in   |    2 +-
+ 2 files changed, 91 insertions(+), 48 deletions(-)
+
+commit 1cce05f8c3d2b52f030b3e253d37ae5a6eee8003
+Author: Ryan Lortie <desrt@desrt.ca>
+Date:   Mon Dec 9 13:17:55 2013 -0500
+
+    Don't hardcode python path
+    
+    Instead, use automake to find it at runtime and put #!@PYTHON@ at the top of
+    itstool.in.
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=72533
+
+ configure.ac |    2 ++
+ itstool.in   |    2 +-
+ 2 files changed, 3 insertions(+), 1 deletions(-)
+
+commit 46067ed60cbe1e5e3efe176da1f40f8219336490
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun Nov 24 14:10:03 2013 -0500
+
+    Fixed crash in locale filter and drop rule, #715116
+    
+    When the dropped node has no preceding sibling, itstool crashes
+    because it tries to unlink prev node if it's blank.
+
+ itstool.in |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 6d90f59ee2fcd9492501b337a15c65bfce78afcd
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Nov 18 11:21:10 2013 -0500
+
+    Version 2.0.1
+
+ NEWS         |    4 ++++
+ configure.ac |    2 +-
+ 2 files changed, 5 insertions(+), 1 deletions(-)
+
+commit b317a7c7362938098379f2f8db42f0f94d6f98dd
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Nov 4 16:32:34 2013 -0500
+
+    its: Consolidate ITS rules for better performance
+
+ its/docbook.its  |  313 +++++++++++++++++++++++++++---------------------------
+ its/docbook5.its |  310 ++++++++++++++++++++++++++---------------------------
+ its/its.its      |    3 +-
+ its/mallard.its  |   25 ++---
+ its/xhtml.its    |   67 ++++++------
+ 5 files changed, 355 insertions(+), 363 deletions(-)
+
+commit 3788e65a1fee2b141318b7bffc58d9dce8339d1a
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Nov 1 13:48:41 2013 -0400
+
+    NEWS: Fixed typo
+
+ NEWS |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit dd44edfb9486e4506accb520874d4e62422e1419
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Nov 1 13:43:35 2013 -0400
+
+    Version 2.0.0
+
+ NEWS         |   19 +++++++++++++++++++
+ configure.ac |    2 +-
+ 2 files changed, 20 insertions(+), 1 deletions(-)
+
+commit 17a89300affeac556803c23eefefc9f279a82908
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Nov 1 11:53:28 2013 -0400
+
+    docbook*.its: Make info children always not within text
+    
+    Some of the children are marked within text because they should be
+    when appearing in a para. But letting info appear as if it were a
+    text run hits some strange corner cases that cause locale filter
+    not to be applied as you might think it should.
+
+ its/docbook.its  |    3 +++
+ its/docbook5.its |    3 +++
+ 2 files changed, 6 insertions(+), 0 deletions(-)
+
+commit 8e4ccd41ad198ebc816a43419c21714bad7dc748
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Nov 1 10:46:21 2013 -0400
+
+    its: Exclude editor remarks/comments with locale filter
+
+ its/docbook.its  |    4 ++--
+ its/docbook5.its |    4 ++--
+ its/mallard.its  |    3 ++-
+ 3 files changed, 6 insertions(+), 5 deletions(-)
+
+commit 770a84a13e30f5e5d8218ae495b430d0c3002f56
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Nov 1 10:14:42 2013 -0400
+
+    itstool.in: Allow users to set ITS params
+
+ its/its.its |    1 +
+ itstool.in  |   62 ++++++++++++++++++++++++++++++++++++----------------------
+ 2 files changed, 39 insertions(+), 24 deletions(-)
+
+commit 6ec6088089430eb5e1cd5a2aa82eef3161b11487
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Oct 31 14:16:54 2013 -0400
+
+    its: Switched built-in ITS rules to 2.0
+
+ its/its.its     |    2 +-
+ its/mallard.its |    2 +-
+ its/ttml.its    |    2 +-
+ its/xhtml.its   |    2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 7486a069a39b97d84fb76ff85286b40f4c8e5af0
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Oct 31 14:16:31 2013 -0400
+
+    docbook5.its: Added DocBook 5 support
+    
+    Also minor fixed to DocBook 4 I ran across
+
+ its/Makefile.am  |    2 +-
+ its/docbook.its  |    7 ++-
+ its/docbook5.its |  201 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 207 insertions(+), 3 deletions(-)
+
+commit 844bf80669ffe05ad13c5ce540f4c32d6ed0bb31
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Oct 31 09:59:11 2013 -0400
+
+    docbook.its: Updated preserve space and external resource
+
+ its/docbook.its |   19 +++++++++----------
+ 1 files changed, 9 insertions(+), 10 deletions(-)
+
+commit 95d331264b29d4ad13cd661d2d3d84e2ef09e7ab
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Oct 31 09:54:44 2013 -0400
+
+    mallard.its: Updated preserve space and external resource
+
+ its/mallard.its |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 4af2d64a7987ef2dc4121afc1bb6ebf8077230b3
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Oct 31 09:49:54 2013 -0400
+
+    xhtml.its: Updated preserve space and external resource
+
+ its/xhtml.its |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
+
+commit d657543826789e263ac9c8861a722f2527b5b0a3
+Merge: e338a3e 2928d6f
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Oct 28 12:05:03 2013 -0400
+
+    Merge branch 'master' into its-2-0
+
+commit e338a3e4463d6f8098ef76c45d44851fe62cb126
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Oct 28 11:06:00 2013 -0400
+
+    Support localeFilterType="exclude"
+
+ itstool.in                               |   64 ++++++++++++++++++++++-------
+ tests/ITS-2.0-Testsuite/run_tests.sh     |   18 ++------
+ tests/LocaleFilter/Locale1Xml.fr_CA.po   |    4 +-
+ tests/LocaleFilter/Locale1Xml.fr_CH.po   |    4 +-
+ tests/LocaleFilter/Locale1Xml.fr_FR.po   |    4 +-
+ tests/LocaleFilter/Locale1Xml.pot        |    4 +-
+ tests/LocaleFilter/Locale2Xml.fr_CA.po   |    4 +-
+ tests/LocaleFilter/Locale2Xml.fr_CH.po   |    4 +-
+ tests/LocaleFilter/Locale2Xml.fr_FR.po   |    4 +-
+ tests/LocaleFilter/Locale2Xml.pot        |    4 +-
+ tests/LocaleFilter/Locale3Xml.fr_CA.po   |    4 +-
+ tests/LocaleFilter/Locale3Xml.fr_CH.po   |    4 +-
+ tests/LocaleFilter/Locale3Xml.fr_FR.po   |    4 +-
+ tests/LocaleFilter/Locale3Xml.pot        |    4 +-
+ tests/LocaleFilter/Locale4Xml.fr_CA.po   |    4 +-
+ tests/LocaleFilter/Locale4Xml.fr_CH.po   |    4 +-
+ tests/LocaleFilter/Locale4Xml.fr_FR.po   |    4 +-
+ tests/LocaleFilter/Locale4Xml.pot        |    4 +-
+ tests/LocaleFilter/Locale5Xml.fr_CA.po   |    4 +-
+ tests/LocaleFilter/Locale5Xml.fr_CH.po   |    4 +-
+ tests/LocaleFilter/Locale5Xml.fr_FR.po   |    4 +-
+ tests/LocaleFilter/Locale5Xml.pot        |    4 +-
+ tests/LocaleFilter/Locale6Xml.fr_CA.po   |   22 ++++++++++
+ tests/LocaleFilter/Locale6Xml.fr_CA.xml  |   13 ++++++
+ tests/LocaleFilter/Locale6Xml.fr_CH.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale6Xml.fr_CH.xml  |   13 ++++++
+ tests/LocaleFilter/Locale6Xml.fr_FR.po   |   22 ++++++++++
+ tests/LocaleFilter/Locale6Xml.fr_FR.xml  |   13 ++++++
+ tests/LocaleFilter/Locale6Xml.joined.xml |   22 ++++++++++
+ tests/LocaleFilter/Locale6Xml.pot        |   23 +++++++++++
+ tests/LocaleFilter/Locale6Xml.xml        |   20 +++++++++
+ tests/run_tests.py                       |   16 +++++++
+ 32 files changed, 279 insertions(+), 70 deletions(-)
+
+commit 9f85a74071db1fa5ca3a2dd83a3ab187884fb7f7
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun Oct 27 22:36:56 2013 -0400
+
+    Update ITS 2.0 test suite
+
+ .../elementswithintext/html/withintext1html.html   |   64 ++++++++--------
+ .../html/withintext1htmlrules.xml                  |    8 +-
+ .../elementswithintext/html/withintext2html.html   |   20 +++---
+ .../elementswithintext/html/withintext3html.html   |   64 ++++++++--------
+ .../html/withintext3htmlrules.xml                  |   10 +-
+ .../elementswithintext/html/withintext4html.html   |   76 ++++++++++----------
+ .../elementswithintext/xml/withintext1xml.xml      |   24 +++---
+ .../elementswithintext/xml/withintext2xml.xml      |   50 ++++++------
+ .../elementswithintext/xml/withintext2xmlrules.xml |   12 ++--
+ .../elementswithintext/xml/withintext3xml.xml      |   22 +++---
+ .../elementswithintext/xml/withintext4xml.xml      |   24 +++---
+ .../elementswithintext/xml/withintext5xml.xml      |   50 ++++++------
+ .../elementswithintext/xml/withintext6xml.xml      |   42 +++++-----
+ .../elementswithintext/xml/withintext6xmlrules.xml |   10 +-
+ .../html/externalresource1html.html                |   30 ++++----
+ .../html/externalresource1htmlrules.xml            |    8 +-
+ .../html/externalresource2html.html                |   34 ++++----
+ .../html/externalresource2htmlrules.xml            |    8 +-
+ .../html/externalresource3html.html                |   40 +++++-----
+ .../externalresource/xml/externalresource1xml.xml  |   48 ++++++------
+ .../externalresource/xml/externalresource2xml.xml  |   44 ++++++------
+ .../xml/externalresource2xmlrules.xml              |    6 +-
+ .../externalresource/xml/externalresource3xml.xml  |   56 +++++++-------
+ .../xml/externalresource3xmlrules.xml              |    6 +-
+ .../externalresource/xml/externalresource4xml.xml  |   50 ++++++------
+ .../externalresource/xml/externalresource5xml.xml  |   40 +++++-----
+ .../xml/externalresource5xmlrules.xml              |   10 +-
+ .../inputdata/idvalue/html/idvalue1html.html       |   32 ++++----
+ .../inputdata/idvalue/html/idvalue1htmlrules.xml   |   12 ++--
+ .../inputdata/idvalue/html/idvalue2html.html       |   34 ++++----
+ .../inputdata/idvalue/html/idvalue2htmlrules.xml   |   14 ++--
+ .../inputdata/idvalue/html/idvalue3html.html       |   44 ++++++------
+ .../inputdata/idvalue/xml/idvalue1xml.xml          |   40 +++++-----
+ .../inputdata/idvalue/xml/idvalue2xml.xml          |    8 +-
+ .../inputdata/idvalue/xml/idvalue3xml.xml          |   26 +++---
+ .../inputdata/idvalue/xml/idvalue3xmlrules.xml     |    6 +-
+ .../inputdata/idvalue/xml/idvalue4xml.xml          |   34 ++++----
+ .../inputdata/idvalue/xml/idvalue4xmlrules.xml     |    8 +-
+ .../inputdata/idvalue/xml/idvalue5xml.xml          |   40 +++++-----
+ .../inputdata/localefilter/html/locale1html.html   |   28 ++++----
+ .../localefilter/html/locale1htmlrules.xml         |    6 +-
+ .../inputdata/localefilter/html/locale2html.html   |   24 +++---
+ .../inputdata/localefilter/html/locale3html.html   |   28 ++++----
+ .../localefilter/html/locale3htmlrules.xml         |    8 +-
+ .../inputdata/localefilter/html/locale4html.html   |   36 +++++-----
+ .../inputdata/localefilter/html/locale5html.html   |   42 +++++-----
+ .../inputdata/localefilter/xml/locale1xml.xml      |   24 +++---
+ .../inputdata/localefilter/xml/locale2xml.xml      |   18 ++--
+ .../inputdata/localefilter/xml/locale3xml.xml      |   20 +++---
+ .../inputdata/localefilter/xml/locale3xmlrules.xml |    6 +-
+ .../inputdata/localefilter/xml/locale4xml.xml      |   32 ++++----
+ .../inputdata/localefilter/xml/locale4xmlrules.xml |    6 +-
+ .../inputdata/localefilter/xml/locale5xml.xml      |   16 ++--
+ .../inputdata/localefilter/xml/locale6xml.xml      |   26 +++---
+ .../inputdata/localefilter/xml/locale7xml.xml      |   26 +++---
+ .../inputdata/localefilter/xml/locale7xmlrules.xml |    8 +-
+ .../inputdata/localefilter/xml/locale8xml.xml      |   36 +++++-----
+ .../localizationnote/html/locnote1html.html        |   22 +++---
+ .../localizationnote/html/locnote1htmlrules.xml    |   14 ++--
+ .../localizationnote/html/locnote2html.html        |   40 +++++-----
+ .../localizationnote/html/locnote2htmlrules.xml    |    8 +-
+ .../localizationnote/html/locnote3html.html        |   24 +++---
+ .../localizationnote/html/locnote3htmlrules.xml    |    6 +-
+ .../localizationnote/html/locnote4html.html        |   32 ++++----
+ .../localizationnote/html/locnote4htmlrules.xml    |    6 +-
+ .../localizationnote/html/locnote5html.html        |   42 +++++-----
+ .../localizationnote/html/locnote5htmlrules.xml    |   30 ++++----
+ .../localizationnote/html/locnote6html.html        |   42 +++++-----
+ .../localizationnote/html/locnote6htmlrules.xml    |   30 ++++----
+ .../localizationnote/html/locnote7html.html        |   20 +++---
+ .../localizationnote/html/locnote8html.html        |   42 +++++-----
+ .../localizationnote/html/locnote8htmlrules.xml    |   32 ++++----
+ .../localizationnote/html/locnote9html.html        |   40 +++++-----
+ .../localizationnote/xml/locnote10xml.xml          |   66 ++++++++--------
+ .../localizationnote/xml/locnote11xml.xml          |   36 +++++-----
+ .../localizationnote/xml/locnote11xmlrules.xml     |   32 ++++----
+ .../inputdata/localizationnote/xml/locnote1xml.xml |   26 +++---
+ .../inputdata/localizationnote/xml/locnote2xml.xml |   38 +++++-----
+ .../inputdata/localizationnote/xml/locnote3xml.xml |   24 +++---
+ .../inputdata/localizationnote/xml/locnote4xml.xml |   32 ++++----
+ .../inputdata/localizationnote/xml/locnote5xml.xml |   30 ++++----
+ .../localizationnote/xml/locnote5xmlrules.xml      |   18 ++--
+ .../inputdata/localizationnote/xml/locnote6xml.xml |   42 +++++-----
+ .../inputdata/localizationnote/xml/locnote7xml.xml |   40 +++++-----
+ .../inputdata/localizationnote/xml/locnote8xml.xml |   34 ++++----
+ .../inputdata/localizationnote/xml/locnote9xml.xml |   16 ++--
+ .../preservespace/xml/preservespace1xml.xml        |   26 +++---
+ .../preservespace/xml/preservespace2xml.xml        |   16 ++--
+ .../preservespace/xml/preservespace3xml.xml        |   22 +++---
+ .../preservespace/xml/preservespace3xmlrules.xml   |    6 +-
+ .../preservespace/xml/preservespace4xml.xml        |   16 ++--
+ .../preservespace/xml/preservespace5xml.xml        |   28 ++++----
+ .../preservespace/xml/preservespace6xml.xml        |   18 ++--
+ .../preservespace/xml/preservespace6xmlrules.xml   |    8 +-
+ .../inputdata/translate/html/translate1html.html   |   34 ++++----
+ .../translate/html/translate1htmlrules.xml         |    8 +-
+ .../inputdata/translate/html/translate2html.html   |   36 +++++-----
+ .../inputdata/translate/html/translate3html.html   |   46 ++++++------
+ .../translate/html/translate3htmlrules.xml         |    8 +-
+ .../inputdata/translate/html/translate4html.html   |   46 ++++++------
+ .../translate/html/translate4htmlrules.xml         |    8 +-
+ .../inputdata/translate/html/translate5html.html   |   68 +++++++++---------
+ .../translate/html/translate5htmlrules.xml         |    8 +-
+ .../inputdata/translate/html/translate6html.html   |   68 +++++++++---------
+ .../translate/html/translate6htmlrules.xml         |   12 ++--
+ .../inputdata/translate/html/translate7html.html   |   38 +++++-----
+ .../inputdata/translate/xml/translate10xml.xml     |   14 ++--
+ .../translate/xml/translate10xmlrules.xml          |   10 +-
+ .../inputdata/translate/xml/translate1xml.xml      |   78 ++++++++++----------
+ .../inputdata/translate/xml/translate2xml.xml      |   20 +++---
+ .../inputdata/translate/xml/translate2xmlrules.xml |   10 +-
+ .../inputdata/translate/xml/translate3xml.xml      |   26 +++---
+ .../inputdata/translate/xml/translate3xmlrules.xml |   12 ++--
+ .../inputdata/translate/xml/translate4xml.xml      |   22 +++---
+ .../inputdata/translate/xml/translate5xml.xml      |   26 +++---
+ .../inputdata/translate/xml/translate6xml.xml      |   38 +++++-----
+ .../inputdata/translate/xml/translate7xml.xml      |   38 +++++-----
+ .../inputdata/translate/xml/translate8xml.xml      |   56 +++++++-------
+ .../inputdata/translate/xml/translate9xml.xml      |   22 +++---
+ 119 files changed, 1650 insertions(+), 1650 deletions(-)
+
+commit dde5a9ac006ab839b67e711e27977fbf074dc04e
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun Oct 27 21:02:46 2013 -0400
+
+    Add support for its:param
+
+ itstool.in                           |   12 +++++++++++-
+ tests/ITS-2.0-Testsuite/run_tests.sh |   16 +---------------
+ 2 files changed, 12 insertions(+), 16 deletions(-)
+
+commit 45872e7e4252aadd0fc304ab3c9d1d740c690b5f
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun Oct 27 13:45:12 2013 -0400
+
+    Fixed issue with preserveSpace from xml:space attribute
+
+ itstool.in |   15 +++++++--------
+ 1 files changed, 7 insertions(+), 8 deletions(-)
+
+commit 29d6a9ea85c8fb939b4fdaabb92e08eb42bfdefc
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun Oct 27 13:45:00 2013 -0400
+
+    Updated ITS 2.0 test suite
+
+ .../html/withintext1htmloutput.txt                 |   14 +++++---
+ .../html/withintext3htmloutput.txt                 |   12 ++++---
+ .../html/withintext4htmloutput.txt                 |   16 +++++----
+ .../html/externalresource1htmloutput.txt           |    7 ++--
+ .../html/externalresource2htmloutput.txt           |   21 ++++++------
+ .../html/externalresource3htmloutput.txt           |    7 ++--
+ .../localefilter/html/locale1htmloutput.txt        |   24 +++++++-------
+ .../localefilter/html/locale2htmloutput.txt        |   20 ++++++------
+ .../localefilter/html/locale3htmloutput.txt        |   24 +++++++-------
+ .../localefilter/html/locale4htmloutput.txt        |   22 ++++++------
+ .../localefilter/html/locale5htmloutput.txt        |   21 ++++++++++++
+ .../expected/localefilter/xml/locale1xmloutput.txt |   22 ++++++------
+ .../expected/localefilter/xml/locale2xmloutput.txt |   12 +++---
+ .../expected/localefilter/xml/locale3xmloutput.txt |   18 +++++-----
+ .../expected/localefilter/xml/locale4xmloutput.txt |   34 ++++++++++----------
+ .../expected/localefilter/xml/locale5xmloutput.txt |   12 +++---
+ .../expected/localefilter/xml/locale6xmloutput.txt |   30 +++++++++---------
+ .../expected/localefilter/xml/locale7xmloutput.txt |   24 +++++++-------
+ .../expected/localefilter/xml/locale8xmloutput.txt |   19 +++++++++++
+ .../localizationnote/xml/locnote1xmloutput.txt     |    1 -
+ .../translate/html/translate1htmloutput.txt        |    7 +++-
+ .../translate/html/translate2htmloutput.txt        |    6 +++
+ .../translate/html/translate3htmloutput.txt        |    1 +
+ .../translate/html/translate7htmloutput.txt        |    4 ++-
+ .../expected/translate/xml/translate4xmloutput.txt |    5 +++
+ .../elementswithintext/html/withintext1html.html   |   12 +++---
+ .../html/withintext1htmlrules.xml                  |    2 -
+ .../elementswithintext/html/withintext3html.html   |   14 ++++----
+ .../html/withintext3htmlrules.xml                  |    5 +--
+ .../elementswithintext/html/withintext4html.html   |   14 +++-----
+ .../html/externalresource1html.html                |    4 +--
+ .../html/externalresource2html.html                |    8 ++---
+ .../html/externalresource2htmlrules.xml            |    2 +-
+ .../html/externalresource3html.html                |    4 +--
+ .../inputdata/idvalue/html/idvalue2htmlrules.xml   |    9 ++---
+ .../inputdata/localefilter/html/locale5html.html   |   21 ++++++++++++
+ .../inputdata/localefilter/xml/locale8xml.xml      |   18 ++++++++++
+ .../inputdata/localizationnote/xml/locnote1xml.xml |    3 +-
+ .../inputdata/translate/html/translate1html.html   |    1 +
+ .../translate/html/translate1htmlrules.xml         |    2 +-
+ .../inputdata/translate/html/translate2html.html   |    3 +-
+ .../inputdata/translate/html/translate3html.html   |    2 +-
+ .../inputdata/translate/html/translate7html.html   |    4 +-
+ .../inputdata/translate/xml/translate4xml.xml      |    1 +
+ tests/ITS-2.0-Testsuite/run_tests.sh               |    8 +++++
+ 45 files changed, 309 insertions(+), 211 deletions(-)
+
+commit 2928d6f02a0f30415bd993490d1920fd990ce130
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sat Sep 21 16:24:35 2013 -0400
+
+    Added an option to retain entity references
+    
+    You still have to load the DTD if the entities are defined in
+    the external subset, because libxml2 checks references even if
+    it doesn't dereference them. It would be nice if this weren't
+    necessary.
+
+ itstool.in                      |   32 +++++++++++++++++++++++++++-----
+ tests/IT-keep-entities-1.ll.po  |   21 +++++++++++++++++++++
+ tests/IT-keep-entities-1.ll.xml |    7 +++++++
+ tests/IT-keep-entities-1.pot    |   21 +++++++++++++++++++++
+ tests/IT-keep-entities-1.xml    |    7 +++++++
+ tests/IT-keep-entities-2.ll.po  |   21 +++++++++++++++++++++
+ tests/IT-keep-entities-2.ll.xml |    9 +++++++++
+ tests/IT-keep-entities-2.pot    |   21 +++++++++++++++++++++
+ tests/IT-keep-entities-2.xml    |    9 +++++++++
+ tests/run_tests.py              |   20 ++++++++++++++------
+ 10 files changed, 157 insertions(+), 11 deletions(-)
+
+commit 309b2cee105430c5ed387d7862e9405d41e76088
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sat Sep 21 12:17:12 2013 -0400
+
+    Fix utf8 issue introduced in Sep 20 commit
+
+ itstool.in |   10 ++++++----
+ 1 files changed, 6 insertions(+), 4 deletions(-)
+
+commit cf30d00a9d4802f9d7479d28a4a3ce420bc36aaf
+Merge: e4c6ada c9dd17a
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Aug 21 09:50:32 2013 -0400
+
+    Merge commit 'refs/merge-requests/5' of gitorious.org:itstool/itstool
+
+commit e4c6adab00c64141483b322d482a3819968b700e
+Merge: 5040a32 34cc26b
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Aug 21 09:45:39 2013 -0400
+
+    Merge commit 'refs/merge-requests/4' of gitorious.org:itstool/itstool
+
+commit c9dd17a6504339eb712e0688b68de01566792b7a
+Author: Clement Chauplannaz <chauplac@gmail.com>
+Date:   Sun Jun 9 16:52:29 2013 +0200
+
+    Configure: test for python module libxml2 presence
+
+ configure.ac |   10 ++++++++++
+ 1 files changed, 10 insertions(+), 0 deletions(-)
+
+commit ab2f5c7430c640cef0dddb7991dc9cfb77284332
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sat Feb 9 23:03:47 2013 -0500
+
+    Properly handle loc note inheritance
+
+ itstool.in                           |   11 +++++++----
+ tests/ITS-2.0-Testsuite/run_tests.sh |    5 -----
+ 2 files changed, 7 insertions(+), 9 deletions(-)
+
+commit 2f77297d840b27a3b294fa098c4a9fb20130a954
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sat Feb 9 22:43:07 2013 -0500
+
+    Add LocNote class to better track localization note info
+
+ itstool.in                           |   69 ++++++++++++++++++++++++---------
+ tests/ITS-2.0-Testsuite/run_tests.sh |    5 --
+ 2 files changed, 50 insertions(+), 24 deletions(-)
+
+commit 64121755e4c515f184acd0f99bab20798a865178
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sat Feb 9 13:51:37 2013 -0500
+
+    Fix IdValue for attributes and nodes with attributes
+
+ itstool.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit a6becc8bbc4ce20217ba6a8bd11016297db2e607
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sat Feb 2 14:15:56 2013 -0500
+
+    Adding the ITS 2.0 test suite, found here:
+    
+    https://github.com/finnle/ITS-2.0-Testsuite/commits/master
+
+ itstool.in                                         |   33 ++++++++---
+ tests/ITS-2.0-Testsuite/README                     |    1 +
+ .../html/withintext1htmloutput.txt                 |   24 ++++++++
+ .../html/withintext2htmloutput.txt                 |   10 +++
+ .../html/withintext3htmloutput.txt                 |   24 ++++++++
+ .../html/withintext4htmloutput.txt                 |   24 ++++++++
+ .../xml/withintext1xmloutput.txt                   |   17 +++++
+ .../xml/withintext2xmloutput.txt                   |   28 +++++++++
+ .../xml/withintext3xmloutput.txt                   |   15 +++++
+ .../xml/withintext4xmloutput.txt                   |   15 +++++
+ .../xml/withintext5xmloutput.txt                   |   20 ++++++
+ .../xml/withintext6xmloutput.txt                   |   13 ++++
+ .../html/externalresource1htmloutput.txt           |   19 ++++++
+ .../html/externalresource2htmloutput.txt           |   21 +++++++
+ .../html/externalresource3htmloutput.txt           |   18 ++++++
+ .../xml/externalresource1xmloutput.txt             |   17 +++++
+ .../xml/externalresource2xmloutput.txt             |   15 +++++
+ .../xml/externalresource3xmloutput.txt             |   23 +++++++
+ .../xml/externalresource4xmloutput.txt             |   19 ++++++
+ .../xml/externalresource5xmloutput.txt             |   15 +++++
+ .../expected/idvalue/html/idvalue1htmloutput.txt   |   15 +++++
+ .../expected/idvalue/html/idvalue2htmloutput.txt   |   17 +++++
+ .../expected/idvalue/html/idvalue3htmloutput.txt   |   14 ++++
+ .../expected/idvalue/xml/idvalue1xmloutput.txt     |   18 ++++++
+ .../expected/idvalue/xml/idvalue2xmloutput.txt     |    6 ++
+ .../expected/idvalue/xml/idvalue3xmloutput.txt     |   14 ++++
+ .../expected/idvalue/xml/idvalue4xmloutput.txt     |   18 ++++++
+ .../expected/idvalue/xml/idvalue5xmloutput.txt     |   22 +++++++
+ .../localefilter/html/locale1htmloutput.txt        |   12 ++++
+ .../localefilter/html/locale2htmloutput.txt        |   10 +++
+ .../localefilter/html/locale3htmloutput.txt        |   12 ++++
+ .../localefilter/html/locale4htmloutput.txt        |   11 ++++
+ .../expected/localefilter/xml/locale1xmloutput.txt |   11 ++++
+ .../expected/localefilter/xml/locale2xmloutput.txt |    6 ++
+ .../expected/localefilter/xml/locale3xmloutput.txt |    9 +++
+ .../expected/localefilter/xml/locale4xmloutput.txt |   17 +++++
+ .../expected/localefilter/xml/locale5xmloutput.txt |    6 ++
+ .../expected/localefilter/xml/locale6xmloutput.txt |   15 +++++
+ .../expected/localefilter/xml/locale7xmloutput.txt |   12 ++++
+ .../localizationnote/html/locnote1htmloutput.txt   |   11 ++++
+ .../localizationnote/html/locnote2htmloutput.txt   |   17 +++++
+ .../localizationnote/html/locnote3htmloutput.txt   |   11 ++++
+ .../localizationnote/html/locnote4htmloutput.txt   |   17 +++++
+ .../localizationnote/html/locnote5htmloutput.txt   |   21 +++++++
+ .../localizationnote/html/locnote6htmloutput.txt   |   21 +++++++
+ .../localizationnote/html/locnote7htmloutput.txt   |   11 ++++
+ .../localizationnote/html/locnote8htmloutput.txt   |   21 +++++++
+ .../localizationnote/html/locnote9htmloutput.txt   |   11 ++++
+ .../localizationnote/xml/locnote10xmloutput.txt    |   31 ++++++++++
+ .../localizationnote/xml/locnote11xmloutput.txt    |   19 ++++++
+ .../localizationnote/xml/locnote1xmloutput.txt     |   12 ++++
+ .../localizationnote/xml/locnote2xmloutput.txt     |   20 ++++++
+ .../localizationnote/xml/locnote3xmloutput.txt     |   11 ++++
+ .../localizationnote/xml/locnote4xmloutput.txt     |   17 +++++
+ .../localizationnote/xml/locnote5xmloutput.txt     |   23 +++++++
+ .../localizationnote/xml/locnote6xmloutput.txt     |   29 +++++++++
+ .../localizationnote/xml/locnote7xmloutput.txt     |   20 ++++++
+ .../localizationnote/xml/locnote8xmloutput.txt     |   20 ++++++
+ .../localizationnote/xml/locnote9xmloutput.txt     |   11 ++++
+ .../preservespace/xml/preservespace1xmloutput.txt  |    9 +++
+ .../preservespace/xml/preservespace2xmloutput.txt  |    4 +
+ .../preservespace/xml/preservespace3xmloutput.txt  |    7 ++
+ .../preservespace/xml/preservespace4xmloutput.txt  |    4 +
+ .../preservespace/xml/preservespace5xmloutput.txt  |   12 ++++
+ .../preservespace/xml/preservespace6xmloutput.txt  |    8 +++
+ .../translate/html/translate1htmloutput.txt        |   13 ++++
+ .../translate/html/translate2htmloutput.txt        |   11 ++++
+ .../translate/html/translate3htmloutput.txt        |   15 +++++
+ .../translate/html/translate4htmloutput.txt        |   15 +++++
+ .../translate/html/translate5htmloutput.txt        |   24 ++++++++
+ .../translate/html/translate6htmloutput.txt        |   24 ++++++++
+ .../translate/html/translate7htmloutput.txt        |   12 ++++
+ .../translate/xml/translate10xmloutput.txt         |   17 +++++
+ .../expected/translate/xml/translate1xmloutput.txt |   59 ++++++++++++++++++
+ .../expected/translate/xml/translate2xmloutput.txt |   11 ++++
+ .../expected/translate/xml/translate3xmloutput.txt |   17 +++++
+ .../expected/translate/xml/translate4xmloutput.txt |   10 +++
+ .../expected/translate/xml/translate5xmloutput.txt |   11 ++++
+ .../expected/translate/xml/translate6xmloutput.txt |   22 +++++++
+ .../expected/translate/xml/translate7xmloutput.txt |   22 +++++++
+ .../expected/translate/xml/translate8xmloutput.txt |   28 +++++++++
+ .../expected/translate/xml/translate9xmloutput.txt |   23 +++++++
+ .../elementswithintext/html/withintext1html.html   |   32 ++++++++++
+ .../html/withintext1htmlrules.xml                  |    6 ++
+ .../elementswithintext/html/withintext2html.html   |   10 +++
+ .../elementswithintext/html/withintext3html.html   |   32 ++++++++++
+ .../html/withintext3htmlrules.xml                  |    6 ++
+ .../elementswithintext/html/withintext4html.html   |   40 ++++++++++++
+ .../elementswithintext/xml/withintext1xml.xml      |   12 ++++
+ .../elementswithintext/xml/withintext2xml.xml      |   25 ++++++++
+ .../elementswithintext/xml/withintext2xmlrules.xml |    6 ++
+ .../elementswithintext/xml/withintext3xml.xml      |   11 ++++
+ .../elementswithintext/xml/withintext4xml.xml      |   12 ++++
+ .../elementswithintext/xml/withintext5xml.xml      |   25 ++++++++
+ .../elementswithintext/xml/withintext6xml.xml      |   21 +++++++
+ .../elementswithintext/xml/withintext6xmlrules.xml |    5 ++
+ .../html/externalresource1html.html                |   17 +++++
+ .../html/externalresource1htmlrules.xml            |    4 +
+ .../html/externalresource2html.html                |   19 ++++++
+ .../html/externalresource2htmlrules.xml            |    4 +
+ .../html/externalresource3html.html                |   22 +++++++
+ .../externalresource/xml/externalresource1xml.xml  |   24 ++++++++
+ .../externalresource/xml/externalresource2xml.xml  |   22 +++++++
+ .../xml/externalresource2xmlrules.xml              |    3 +
+ .../externalresource/xml/externalresource3xml.xml  |   28 +++++++++
+ .../xml/externalresource3xmlrules.xml              |    3 +
+ .../externalresource/xml/externalresource4xml.xml  |   25 ++++++++
+ .../externalresource/xml/externalresource5xml.xml  |   20 ++++++
+ .../xml/externalresource5xmlrules.xml              |    5 ++
+ .../inputdata/idvalue/html/idvalue1html.html       |   16 +++++
+ .../inputdata/idvalue/html/idvalue1htmlrules.xml   |    6 ++
+ .../inputdata/idvalue/html/idvalue2html.html       |   17 +++++
+ .../inputdata/idvalue/html/idvalue2htmlrules.xml   |    8 +++
+ .../inputdata/idvalue/html/idvalue3html.html       |   22 +++++++
+ .../inputdata/idvalue/xml/idvalue1xml.xml          |   20 ++++++
+ .../inputdata/idvalue/xml/idvalue2xml.xml          |    4 +
+ .../inputdata/idvalue/xml/idvalue3xml.xml          |   13 ++++
+ .../inputdata/idvalue/xml/idvalue3xmlrules.xml     |    3 +
+ .../inputdata/idvalue/xml/idvalue4xml.xml          |   17 +++++
+ .../inputdata/idvalue/xml/idvalue4xmlrules.xml     |    4 +
+ .../inputdata/idvalue/xml/idvalue5xml.xml          |   20 ++++++
+ .../inputdata/localefilter/html/locale1html.html   |   14 ++++
+ .../localefilter/html/locale1htmlrules.xml         |    3 +
+ .../inputdata/localefilter/html/locale2html.html   |   12 ++++
+ .../inputdata/localefilter/html/locale3html.html   |   14 ++++
+ .../localefilter/html/locale3htmlrules.xml         |    4 +
+ .../inputdata/localefilter/html/locale4html.html   |   18 ++++++
+ .../inputdata/localefilter/xml/locale1xml.xml      |   12 ++++
+ .../inputdata/localefilter/xml/locale2xml.xml      |    9 +++
+ .../inputdata/localefilter/xml/locale3xml.xml      |   10 +++
+ .../inputdata/localefilter/xml/locale3xmlrules.xml |    3 +
+ .../inputdata/localefilter/xml/locale4xml.xml      |   16 +++++
+ .../inputdata/localefilter/xml/locale4xmlrules.xml |    3 +
+ .../inputdata/localefilter/xml/locale5xml.xml      |    8 +++
+ .../inputdata/localefilter/xml/locale6xml.xml      |   14 ++++
+ .../inputdata/localefilter/xml/locale7xml.xml      |   13 ++++
+ .../inputdata/localefilter/xml/locale7xmlrules.xml |    4 +
+ .../localizationnote/html/locnote1html.html        |   11 ++++
+ .../localizationnote/html/locnote1htmlrules.xml    |    7 ++
+ .../localizationnote/html/locnote2html.html        |   20 ++++++
+ .../localizationnote/html/locnote2htmlrules.xml    |    4 +
+ .../localizationnote/html/locnote3html.html        |   12 ++++
+ .../localizationnote/html/locnote3htmlrules.xml    |    3 +
+ .../localizationnote/html/locnote4html.html        |   16 +++++
+ .../localizationnote/html/locnote4htmlrules.xml    |    3 +
+ .../localizationnote/html/locnote5html.html        |   21 +++++++
+ .../localizationnote/html/locnote5htmlrules.xml    |   15 +++++
+ .../localizationnote/html/locnote6html.html        |   21 +++++++
+ .../localizationnote/html/locnote6htmlrules.xml    |   15 +++++
+ .../localizationnote/html/locnote7html.html        |   10 +++
+ .../localizationnote/html/locnote8html.html        |   21 +++++++
+ .../localizationnote/html/locnote8htmlrules.xml    |   16 +++++
+ .../localizationnote/html/locnote9html.html        |   20 ++++++
+ .../localizationnote/xml/locnote10xml.xml          |   33 ++++++++++
+ .../localizationnote/xml/locnote11xml.xml          |   18 ++++++
+ .../localizationnote/xml/locnote11xmlrules.xml     |   16 +++++
+ .../inputdata/localizationnote/xml/locnote1xml.xml |   14 ++++
+ .../inputdata/localizationnote/xml/locnote2xml.xml |   19 ++++++
+ .../inputdata/localizationnote/xml/locnote3xml.xml |   12 ++++
+ .../inputdata/localizationnote/xml/locnote4xml.xml |   16 +++++
+ .../inputdata/localizationnote/xml/locnote5xml.xml |   15 +++++
+ .../localizationnote/xml/locnote5xmlrules.xml      |    9 +++
+ .../inputdata/localizationnote/xml/locnote6xml.xml |   21 +++++++
+ .../inputdata/localizationnote/xml/locnote7xml.xml |   20 ++++++
+ .../inputdata/localizationnote/xml/locnote8xml.xml |   17 +++++
+ .../inputdata/localizationnote/xml/locnote9xml.xml |    8 +++
+ .../preservespace/xml/preservespace1xml.xml        |   13 ++++
+ .../preservespace/xml/preservespace2xml.xml        |    8 +++
+ .../preservespace/xml/preservespace3xml.xml        |   11 ++++
+ .../preservespace/xml/preservespace3xmlrules.xml   |    3 +
+ .../preservespace/xml/preservespace4xml.xml        |    8 +++
+ .../preservespace/xml/preservespace5xml.xml        |   14 ++++
+ .../preservespace/xml/preservespace6xml.xml        |    9 +++
+ .../preservespace/xml/preservespace6xmlrules.xml   |    4 +
+ .../inputdata/translate/html/translate1html.html   |   16 +++++
+ .../translate/html/translate1htmlrules.xml         |    4 +
+ .../inputdata/translate/html/translate2html.html   |   17 +++++
+ .../inputdata/translate/html/translate3html.html   |   23 +++++++
+ .../translate/html/translate3htmlrules.xml         |    4 +
+ .../inputdata/translate/html/translate4html.html   |   23 +++++++
+ .../translate/html/translate4htmlrules.xml         |    4 +
+ .../inputdata/translate/html/translate5html.html   |   34 +++++++++++
+ .../translate/html/translate5htmlrules.xml         |    4 +
+ .../inputdata/translate/html/translate6html.html   |   34 +++++++++++
+ .../translate/html/translate6htmlrules.xml         |    6 ++
+ .../inputdata/translate/html/translate7html.html   |   19 ++++++
+ .../inputdata/translate/xml/translate10xml.xml     |    7 ++
+ .../translate/xml/translate10xmlrules.xml          |    5 ++
+ .../inputdata/translate/xml/translate1xml.xml      |   39 ++++++++++++
+ .../inputdata/translate/xml/translate2xml.xml      |   10 +++
+ .../inputdata/translate/xml/translate2xmlrules.xml |    5 ++
+ .../inputdata/translate/xml/translate3xml.xml      |   13 ++++
+ .../inputdata/translate/xml/translate3xmlrules.xml |    6 ++
+ .../inputdata/translate/xml/translate4xml.xml      |   10 +++
+ .../inputdata/translate/xml/translate5xml.xml      |   13 ++++
+ .../inputdata/translate/xml/translate6xml.xml      |   19 ++++++
+ .../inputdata/translate/xml/translate7xml.xml      |   19 ++++++
+ .../inputdata/translate/xml/translate8xml.xml      |   28 +++++++++
+ .../inputdata/translate/xml/translate9xml.xml      |   11 ++++
+ tests/ITS-2.0-Testsuite/run_tests.sh               |   63 ++++++++++++++++++++
+ 200 files changed, 3025 insertions(+), 8 deletions(-)
+
+commit 24811c8cfcbc14cc480a2fbef2288245019f8a7e
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Sep 26 07:46:10 2012 -0400
+
+    Implemented ITS 2.0 "ID Value" data category
+
+ itstool.in                        |   48 ++++++++++++++++++++++++++++++++++++-
+ tests/IdValue/idvalue1xml.pot     |   23 +++++++++++++++++
+ tests/IdValue/idvalue1xml.xml     |   12 +++++++++
+ tests/IdValue/idvalue2xml.pot     |   22 +++++++++++++++++
+ tests/IdValue/idvalue2xml.xml     |    4 +++
+ tests/IdValue/idvalue3XmlRule.xml |    4 +++
+ tests/IdValue/idvalue3xml.pot     |   23 +++++++++++++++++
+ tests/IdValue/idvalue3xml.xml     |   11 ++++++++
+ tests/run_tests.py                |    9 +++++++
+ 9 files changed, 155 insertions(+), 1 deletions(-)
+
+commit 1440e3b495ae502658e5e5ede6c09babce4bc4f9
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Sep 21 09:39:42 2012 -0400
+
+    Support for local withinText
+
+ itstool.in                                    |   12 ++++++++++--
+ tests/elementwithintextLocalXml.ll.po         |   16 ++++++++++++++++
+ tests/elementwithintextLocalXml.ll.xml        |    6 ++++++
+ tests/elementwithintextLocalXml.pot           |   16 ++++++++++++++++
+ tests/elementwithintextLocalXml.xml           |    8 ++++++++
+ tests/elementwithintextlocalitsSpanXml.ll.po  |   16 ++++++++++++++++
+ tests/elementwithintextlocalitsSpanXml.ll.xml |    6 ++++++
+ tests/elementwithintextlocalitsSpanXml.pot    |   16 ++++++++++++++++
+ tests/elementwithintextlocalitsSpanXml.xml    |    7 +++++++
+ tests/run_tests.py                            |    6 ++++++
+ 10 files changed, 107 insertions(+), 2 deletions(-)
+
+commit 2bca336117edee032ad956994d2ef3650f25e322
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Sep 20 20:12:36 2012 -0400
+
+    Fix tests for namespace prefix handling
+
+ itstool.in                 |    8 ++++----
+ tests/IT-prefixes-1.ll.po  |   16 +++-------------
+ tests/IT-prefixes-1.ll.xml |    7 ++++++-
+ tests/IT-prefixes-1.pot    |   16 +++-------------
+ tests/IT-prefixes-1.xml    |    5 +++++
+ 5 files changed, 21 insertions(+), 31 deletions(-)
+
+commit 3a56e53c4cd157da0c5f21c18806047e6b64eddb
+Merge: 70f6f5e 5040a32
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Sep 20 19:58:18 2012 -0400
+
+    Merge branch 'master' into its-2-0
+
+commit 5040a328ba73ec3dd119f013b9a12a2fdc99a6b9
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Sep 20 18:37:44 2012 -0400
+
+    Support namespace prefixes on elements
+
+ itstool.in                 |   10 ++++++++--
+ tests/IT-prefixes-1.ll.po  |   36 ++++++++++++++++++++++++++++++++++++
+ tests/IT-prefixes-1.ll.xml |   16 ++++++++++++++++
+ tests/IT-prefixes-1.pot    |   36 ++++++++++++++++++++++++++++++++++++
+ tests/IT-prefixes-1.xml    |   19 +++++++++++++++++++
+ tests/run_tests.py         |    3 +++
+ 6 files changed, 118 insertions(+), 2 deletions(-)
+
+commit 70f6f5ef01dc03e624e47a341b146ac099be4ebd
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Sep 19 19:58:37 2012 -0400
+
+    Adding test output for External Resource
+
+ itstool.in |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+commit a0880365b8562d59e81889e980429aef840f89c4
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Sep 19 16:49:47 2012 -0400
+
+    Use External Resource implementation for itst:externalRefRule
+
+ itstool.in                  |   46 +++++-------------------------------------
+ tests/IT-externalRef1.ll.po |   12 +++++-----
+ tests/IT-externalRef1.pot   |   12 +++++-----
+ 3 files changed, 18 insertions(+), 52 deletions(-)
+
+commit fee986b054284b029b7b870eff6ded9fd53e43a0
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Sep 19 16:44:37 2012 -0400
+
+    Implemented ITS 2.0 External Resource data category
+
+ itstool.in                                         |   51 ++++++++++++++++++++
+ .../Attr/ExternalResource1AttrXml.pot              |   41 ++++++++++++++++
+ .../Attr/ExternalResource1AttrXml.xml              |   24 +++++++++
+ .../Attr/ExternalResource2AttrRule.xml             |    3 +
+ .../Attr/ExternalResource2AttrXml.pot              |   41 ++++++++++++++++
+ .../Attr/ExternalResource2AttrXml.xml              |   22 ++++++++
+ .../Attr/ExternalResource3AttrRule.xml             |    3 +
+ .../Attr/ExternalResource3AttrXml.pot              |   51 ++++++++++++++++++++
+ .../Attr/ExternalResource3AttrXml.xml              |   28 +++++++++++
+ tests/ExternalResource/Attr/movie-frame.gif        |    1 +
+ tests/ExternalResource/Attr/movie.avi              |    1 +
+ tests/ExternalResource/Attr/movie.mp3              |    1 +
+ tests/ExternalResource/ExternalResource1Xml.pot    |   41 ++++++++++++++++
+ tests/ExternalResource/ExternalResource1Xml.xml    |   24 +++++++++
+ tests/ExternalResource/ExternalResource2Rule.xml   |    3 +
+ tests/ExternalResource/ExternalResource2Xml.pot    |   41 ++++++++++++++++
+ tests/ExternalResource/ExternalResource2Xml.xml    |   22 ++++++++
+ tests/ExternalResource/ExternalResource3Rule.xml   |    3 +
+ tests/ExternalResource/ExternalResource3Xml.pot    |   51 ++++++++++++++++++++
+ tests/ExternalResource/ExternalResource3Xml.xml    |   28 +++++++++++
+ tests/ExternalResource/movie-frame.gif             |    1 +
+ tests/ExternalResource/movie.avi                   |    1 +
+ tests/ExternalResource/movie.mp3                   |    1 +
+ tests/run_tests.py                                 |   18 +++++++
+ 24 files changed, 501 insertions(+), 0 deletions(-)
+
+commit bec881523df59fb1380f82ab0a789d67c34a58ed
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Sep 19 14:10:24 2012 -0400
+
+    Adding a test for itst:externalRefRule
+    
+    Don't know why I never had a test for this before. I'm
+    going to implement the ITS 2.0 External Resource data
+    category, and retool this extension on top, so I need
+    to make sure I don't break it.
+
+ tests/IT-externalRef1.ll.po  |   31 +++++++++++++++++++++++++++++++
+ tests/IT-externalRef1.ll.xml |   10 ++++++++++
+ tests/IT-externalRef1.pot    |   31 +++++++++++++++++++++++++++++++
+ tests/IT-externalRef1.txt    |    1 +
+ tests/IT-externalRef1.xml    |   10 ++++++++++
+ tests/run_tests.py           |    3 +++
+ 6 files changed, 86 insertions(+), 0 deletions(-)
+
+commit ce76559b75fc60ef2a6d69dc99e1781b6adcfe99
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Sep 12 10:21:22 2012 -0400
+
+    Moving some of the tests into subdirectories
+
+ tests/EX-locNote-element-1.pot                     |   18 -------
+ tests/EX-locNote-element-1.xml                     |   14 ------
+ tests/EX-locNote-selector-2.pot                    |   37 ---------------
+ tests/EX-locNote-selector-2.xml                    |   10 ----
+ tests/EX-locNotePointer-attribute-1.pot            |   23 ---------
+ tests/EX-locNotePointer-attribute-1.xml            |   19 --------
+ tests/EX-locNoteRef-attribute-1.pot                |   17 -------
+ tests/EX-locNoteRef-attribute-1.xml                |   12 -----
+ tests/EX-locNoteRefPointer-attribute-1.pot         |   23 ---------
+ tests/EX-locNoteRefPointer-attribute-1.xml         |   16 -------
+ tests/LocNote/EX-locNote-element-1.pot             |   18 +++++++
+ tests/LocNote/EX-locNote-element-1.xml             |   14 ++++++
+ tests/LocNote/EX-locNote-selector-2.pot            |   37 +++++++++++++++
+ tests/LocNote/EX-locNote-selector-2.xml            |   10 ++++
+ tests/LocNote/EX-locNotePointer-attribute-1.pot    |   23 +++++++++
+ tests/LocNote/EX-locNotePointer-attribute-1.xml    |   19 ++++++++
+ tests/LocNote/EX-locNoteRef-attribute-1.pot        |   17 +++++++
+ tests/LocNote/EX-locNoteRef-attribute-1.xml        |   12 +++++
+ tests/LocNote/EX-locNoteRefPointer-attribute-1.pot |   23 +++++++++
+ tests/LocNote/EX-locNoteRefPointer-attribute-1.xml |   16 +++++++
+ tests/LocNote/LocNote1.pot                         |   48 ++++++++++++++++++++
+ tests/LocNote/LocNote1.xml                         |   21 +++++++++
+ tests/LocNote/LocNote2.pot                         |   33 +++++++++++++
+ tests/LocNote/LocNote2.xml                         |   15 ++++++
+ tests/LocNote/LocNote2_LinkedRules.xml             |    9 ++++
+ tests/LocNote/LocNote3.pot                         |   35 ++++++++++++++
+ tests/LocNote/LocNote3.xml                         |   17 +++++++
+ tests/LocNote/LocNote4.pot                         |   35 ++++++++++++++
+ tests/LocNote/LocNote4.xml                         |    8 +++
+ tests/LocNote1.pot                                 |   48 --------------------
+ tests/LocNote1.xml                                 |   21 ---------
+ tests/LocNote2.pot                                 |   33 -------------
+ tests/LocNote2.xml                                 |   15 ------
+ tests/LocNote2_LinkedRules.xml                     |    9 ----
+ tests/LocNote3.pot                                 |   35 --------------
+ tests/LocNote3.xml                                 |   17 -------
+ tests/LocNote4.pot                                 |   35 --------------
+ tests/LocNote4.xml                                 |    8 ---
+ tests/Translate/Translate1.ll.po                   |   47 +++++++++++++++++++
+ tests/Translate/Translate1.ll.xml                  |   39 ++++++++++++++++
+ tests/Translate/Translate1.pot                     |   46 +++++++++++++++++++
+ tests/Translate/Translate1.xml                     |   39 ++++++++++++++++
+ tests/Translate/Translate2.ll.po                   |   21 +++++++++
+ tests/Translate/Translate2.ll.xml                  |   10 ++++
+ tests/Translate/Translate2.pot                     |   21 +++++++++
+ tests/Translate/Translate2.xml                     |   10 ++++
+ tests/Translate/Translate2_LinkedRules.xml         |    5 ++
+ tests/Translate/Translate3.ll.po                   |   25 ++++++++++
+ tests/Translate/Translate3.ll.wrong.po             |   25 ++++++++++
+ tests/Translate/Translate3.ll.wrong.xml            |   12 +++++
+ tests/Translate/Translate3.ll.xml                  |   10 ++++
+ tests/Translate/Translate3.pot                     |   21 +++++++++
+ tests/Translate/Translate3.xml                     |   13 +++++
+ tests/Translate/Translate4.ll.po                   |   25 ++++++++++
+ tests/Translate/Translate4.ll.xml                  |   10 ++++
+ tests/Translate/Translate4.pot                     |   21 +++++++++
+ tests/Translate/Translate4.xml                     |   10 ++++
+ tests/Translate/Translate5.ll.po                   |   25 ++++++++++
+ tests/Translate/Translate5.ll.xml                  |   19 ++++++++
+ tests/Translate/Translate5.pot                     |   21 +++++++++
+ tests/Translate/Translate5.xml                     |   19 ++++++++
+ tests/Translate/Translate6.ll.po                   |   40 ++++++++++++++++
+ tests/Translate/Translate6.ll.xml                  |   19 ++++++++
+ tests/Translate/Translate6.pot                     |   36 +++++++++++++++
+ tests/Translate/Translate6.xml                     |   19 ++++++++
+ tests/Translate/Translate7.ll.po                   |   21 +++++++++
+ tests/Translate/Translate7.ll.xml                  |   29 ++++++++++++
+ tests/Translate/Translate7.pot                     |   21 +++++++++
+ tests/Translate/Translate7.xml                     |   28 +++++++++++
+ tests/Translate/TranslateGlobal.ll.po              |   26 +++++++++++
+ tests/Translate/TranslateGlobal.ll.xml             |   13 +++++
+ tests/Translate/TranslateGlobal.pot                |   26 +++++++++++
+ tests/Translate/TranslateGlobal.xml                |   13 +++++
+ tests/Translate/TranslateGlobal_LinkedRules.xml    |    6 +++
+ tests/Translate1.ll.po                             |   47 -------------------
+ tests/Translate1.ll.xml                            |   39 ----------------
+ tests/Translate1.pot                               |   46 -------------------
+ tests/Translate1.xml                               |   39 ----------------
+ tests/Translate2.ll.po                             |   21 ---------
+ tests/Translate2.ll.xml                            |   10 ----
+ tests/Translate2.pot                               |   21 ---------
+ tests/Translate2.xml                               |   10 ----
+ tests/Translate2_LinkedRules.xml                   |    5 --
+ tests/Translate3.ll.po                             |   25 ----------
+ tests/Translate3.ll.wrong.po                       |   25 ----------
+ tests/Translate3.ll.wrong.xml                      |   12 -----
+ tests/Translate3.ll.xml                            |   10 ----
+ tests/Translate3.pot                               |   21 ---------
+ tests/Translate3.xml                               |   13 -----
+ tests/Translate4.ll.po                             |   25 ----------
+ tests/Translate4.ll.xml                            |   10 ----
+ tests/Translate4.pot                               |   21 ---------
+ tests/Translate4.xml                               |   10 ----
+ tests/Translate5.ll.po                             |   25 ----------
+ tests/Translate5.ll.xml                            |   19 --------
+ tests/Translate5.pot                               |   21 ---------
+ tests/Translate5.xml                               |   19 --------
+ tests/Translate6.ll.po                             |   40 ----------------
+ tests/Translate6.ll.xml                            |   19 --------
+ tests/Translate6.pot                               |   36 ---------------
+ tests/Translate6.xml                               |   19 --------
+ tests/Translate7.ll.po                             |   21 ---------
+ tests/Translate7.ll.xml                            |   29 ------------
+ tests/Translate7.pot                               |   21 ---------
+ tests/Translate7.xml                               |   28 -----------
+ tests/TranslateGlobal.ll.po                        |   26 -----------
+ tests/TranslateGlobal.ll.xml                       |   13 -----
+ tests/TranslateGlobal.pot                          |   26 -----------
+ tests/TranslateGlobal.xml                          |   13 -----
+ tests/TranslateGlobal_LinkedRules.xml              |    6 ---
+ tests/run_tests.py                                 |   44 +++++++++---------
+ 111 files changed, 1223 insertions(+), 1223 deletions(-)
+
+commit 30c0c2c8f86119dc861f5ff8036b79e52eed0292
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Sep 12 09:07:23 2012 -0400
+
+    Adding more Locale Filter tests
+
+ tests/LocaleFilter/Locale2Xml.fr_CA.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale2Xml.fr_CA.xml  |    8 ++++
+ tests/LocaleFilter/Locale2Xml.fr_CH.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale2Xml.fr_CH.xml  |    8 ++++
+ tests/LocaleFilter/Locale2Xml.fr_FR.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale2Xml.fr_FR.xml  |    5 ++
+ tests/LocaleFilter/Locale2Xml.joined.xml |   16 +++++++
+ tests/LocaleFilter/Locale2Xml.pot        |   23 +++++++++++
+ tests/LocaleFilter/Locale2Xml.xml        |   14 ++++++
+ tests/LocaleFilter/Locale3Rule.xml       |    5 ++
+ tests/LocaleFilter/Locale3Xml.fr_CA.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale3Xml.fr_CA.xml  |    9 ++++
+ tests/LocaleFilter/Locale3Xml.fr_CH.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale3Xml.fr_CH.xml  |    9 ++++
+ tests/LocaleFilter/Locale3Xml.fr_FR.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale3Xml.fr_FR.xml  |    6 +++
+ tests/LocaleFilter/Locale3Xml.joined.xml |   17 ++++++++
+ tests/LocaleFilter/Locale3Xml.pot        |   23 +++++++++++
+ tests/LocaleFilter/Locale3Xml.xml        |   16 +++++++
+ tests/LocaleFilter/Locale4Rule.xml       |    3 +
+ tests/LocaleFilter/Locale4Xml.fr_CA.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale4Xml.fr_CA.xml  |   12 ++++++
+ tests/LocaleFilter/Locale4Xml.fr_CH.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale4Xml.fr_CH.xml  |   12 ++++++
+ tests/LocaleFilter/Locale4Xml.fr_FR.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale4Xml.fr_FR.xml  |    9 ++++
+ tests/LocaleFilter/Locale4Xml.joined.xml |   17 ++++++++
+ tests/LocaleFilter/Locale4Xml.pot        |   23 +++++++++++
+ tests/LocaleFilter/Locale4Xml.xml        |   16 +++++++
+ tests/LocaleFilter/Locale5Xml.fr_CA.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale5Xml.fr_CA.xml  |    8 ++++
+ tests/LocaleFilter/Locale5Xml.fr_CH.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale5Xml.fr_CH.xml  |    8 ++++
+ tests/LocaleFilter/Locale5Xml.fr_FR.po   |   23 +++++++++++
+ tests/LocaleFilter/Locale5Xml.fr_FR.xml  |    5 ++
+ tests/LocaleFilter/Locale5Xml.joined.xml |   16 +++++++
+ tests/LocaleFilter/Locale5Xml.pot        |   23 +++++++++++
+ tests/LocaleFilter/Locale5Xml.xml        |   13 ++++++
+ tests/run_tests.py                       |   64 ++++++++++++++++++++++++++++++
+ 39 files changed, 664 insertions(+), 0 deletions(-)
+
+commit 429131c2ffe3fd69d3f29a66ae7eb9ea127b4e72
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Sep 11 22:57:18 2012 -0400
+
+    Sort attribute names in test output
+
+ itstool.in |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 13e8e0c2ab1fb8c793e86e35fa12cbd7694f7f63
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Sep 11 16:48:44 2012 -0400
+
+    Renaming IT-join-1 test output file
+    
+    I changed the naming convention to make it easier
+    to reuse other test input files to also test joins.
+
+ tests/IT-join-1.joined.xml |   36 ++++++++++++++++++++++++++++++++++++
+ tests/IT-join-1.ll.xml     |   36 ------------------------------------
+ 2 files changed, 36 insertions(+), 36 deletions(-)
+
+commit 2d37295f5ccdafc3372ea0e576400524fc688e45
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Sep 11 16:47:19 2012 -0400
+
+    Updating test files for --no-builtins
+
+ tests/IT-locNote-inline.pot    |    5 +++++
+ tests/IT-locNote-multiples.pot |    5 +++++
+ tests/IT-placeholder-1.ll.xml  |    2 +-
+ tests/LocNote1.pot             |   20 ++++++++++++++++++++
+ tests/LocNote2.pot             |    5 +++++
+ tests/Translate3.ll.wrong.xml  |    2 +-
+ tests/Translate3.ll.xml        |    2 +-
+ tests/Translate4.ll.xml        |    2 +-
+ 8 files changed, 39 insertions(+), 4 deletions(-)
+
+commit 0e6a42ffd5fe7cdac8197f22b89e57fe55926687
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Sep 11 16:45:55 2012 -0400
+
+    First pass at implementing Locale Filter
+
+ itstool.in                               |  161 +++++++++++++++++++++++-------
+ tests/LocaleFilter/Locale1Xml.fr_CA.po   |   23 ++++
+ tests/LocaleFilter/Locale1Xml.fr_CA.xml  |   13 +++
+ tests/LocaleFilter/Locale1Xml.fr_CH.po   |   23 ++++
+ tests/LocaleFilter/Locale1Xml.fr_CH.xml  |   13 +++
+ tests/LocaleFilter/Locale1Xml.fr_FR.po   |   23 ++++
+ tests/LocaleFilter/Locale1Xml.fr_FR.xml  |   10 ++
+ tests/LocaleFilter/Locale1Xml.joined.xml |   21 ++++
+ tests/LocaleFilter/Locale1Xml.pot        |   23 ++++
+ tests/LocaleFilter/Locale1Xml.xml        |   20 ++++
+ tests/run_tests.py                       |   75 ++++++++------
+ 11 files changed, 338 insertions(+), 67 deletions(-)
+
+commit cc8084a1596e61363585dea0c13fbe94a4266a1f
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Sep 10 12:26:25 2012 -0400
+
+    Implemented test suite output for withinText
+
+ itstool.in |   27 +++++++++++++++------------
+ 1 files changed, 15 insertions(+), 12 deletions(-)
+
+commit 7c8434af35f907f5c97741d1d22d8157d51a6a5f
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Sep 10 11:38:00 2012 -0400
+
+    Adding test suite output for its:translate
+
+ itstool.in |  110 ++++++++++++++++++++++++++++++++++++++++++------------------
+ 1 files changed, 77 insertions(+), 33 deletions(-)
+
+commit 231548b2539e281a3e68b08a052cb4b03c5368a0
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sat Sep 8 17:36:43 2012 -0400
+
+    Implemented ITS 2.0 Preserve Space data category
+
+ itstool.in                      |   20 +++++++++++++-------
+ tests/preservespace1xml.pot     |   23 +++++++++++++++++++++++
+ tests/preservespace1xml.xml     |   15 +++++++++++++++
+ tests/preservespace2xml.pot     |   23 +++++++++++++++++++++++
+ tests/preservespace2xml.xml     |   10 ++++++++++
+ tests/preservespace3XmlRule.xml |    3 +++
+ tests/preservespace3xml.pot     |   23 +++++++++++++++++++++++
+ tests/preservespace3xml.xml     |   12 ++++++++++++
+ tests/preservespace4xml.pot     |   23 +++++++++++++++++++++++
+ tests/preservespace4xml.xml     |   10 ++++++++++
+ tests/run_tests.py              |   12 ++++++++++++
+ 11 files changed, 167 insertions(+), 7 deletions(-)
+
+commit 34cc26b03424cd3ac72c041c8b576000ce2011d2
+Author: Galen Charlton <gmc@esilibrary.com>
+Date:   Wed Aug 29 10:21:37 2012 -0400
+
+    add --load-dtd option
+    
+    This option tells itstool to load external DTDs when
+    parsing the document to be translated.  This prevents
+    errors when the document includes entity references defined
+    in those DTDs.
+    
+    Note that externally-defined entity refs still cannot be used
+    in translated strings in the PO files.
+    
+    Also note that this adds test cases that require either
+    network access or updating the local XML catalog to
+    including the DocBook DTDs.
+    
+    Signed-off-by: Galen Charlton <gmc@esilibrary.com>
+
+ itstool.in                         |   13 ++++++++++---
+ tests/IT-uses-external-dtds.ll.po  |   21 +++++++++++++++++++++
+ tests/IT-uses-external-dtds.ll.xml |    7 +++++++
+ tests/IT-uses-external-dtds.pot    |   21 +++++++++++++++++++++
+ tests/IT-uses-external-dtds.xml    |    7 +++++++
+ tests/run_tests.py                 |   19 ++++++++++++++++---
+ 6 files changed, 82 insertions(+), 6 deletions(-)
+
+commit 7ee29a46d229bde60c86703730b24d5ac49a1e75
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun Jun 24 10:30:01 2012 -0400
+
+    Version 1.2.0
+
+ NEWS         |    9 +++++++++
+ configure.ac |    2 +-
+ 2 files changed, 10 insertions(+), 1 deletions(-)
+
 commit 6fce21cd7b4417d8ea8cff3a8f2c79063d5353a3
 Merge: f951a0f 470b52a
 Author: Shaun McCance <shaunm@gnome.org>

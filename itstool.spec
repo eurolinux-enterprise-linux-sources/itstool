@@ -1,6 +1,6 @@
 Name:           itstool
-Version:        1.2.0
-Release:        4%{?dist}
+Version:        2.0.2
+Release:        1%{?dist}
 Summary:        ITS-based XML translation tool
 
 Group:          Development/Tools
@@ -9,6 +9,9 @@ URL:            http://itstool.org/
 Source0:        http://files.itstool.org/itstool/%{name}-%{version}.tar.bz2
 
 BuildArch:      noarch
+
+BuildRequires:  libxml2-python
+BuildRequires:  python
 Requires:       libxml2-python
 
 %description
@@ -33,6 +36,10 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %doc %{_mandir}/man1/itstool.1.gz
 
 %changelog
+* Sat May 17 2014 Kalev Lember <kalevlember@gmail.com> - 2.0.2-1
+- Update to 2.0.2
+- Resolves: #1386995
+
 * Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.2.0-4
 - Mass rebuild 2013-12-27
 

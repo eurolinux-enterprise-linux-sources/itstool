@@ -2,7 +2,7 @@
     xmlns:its="http://www.w3.org/2005/11/its"
     xmlns:itst="http://itstool.org/extensions/"
     xmlns:mal="http://projectmallard.org/1.0/"
-    version="1.0">
+    version="2.0">
 
   <itst:match selector="/mal:page"/>
 
@@ -18,24 +18,24 @@
     </mal:credit>
   </itst:credits>
 
-  <its:withinTextRule withinText="yes" selector="//mal:cite//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:code//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:desc//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:email//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:link//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:name//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:p//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:screen//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:title//*"/>
-  <its:withinTextRule withinText="yes" selector="//mal:years//*"/>
+  <its:withinTextRule withinText="yes" selector="//mal:cite//*   |
+                                                 //mal:code//*   |
+                                                 //mal:desc//*   |
+                                                 //mal:email//*  |
+                                                 //mal:link//*   |
+                                                 //mal:name//*   |
+                                                 //mal:p//*      |
+                                                 //mal:screen//* |
+                                                 //mal:title//*  |
+                                                 //mal:years//*  "/>
 
-  <itst:preserveSpaceRule preserveSpace="yes" selector="//mal:code"/>
-  <itst:preserveSpaceRule preserveSpace="yes" selector="//mal:screen"/>
+  <its:preserveSpaceRule space="preserve" selector="//mal:code | //mal:screen "/>
 
-  <its:translateRule translate="no" selector="//mal:comment/descendant-or-self::*"/>
+  <its:localeFilterRule localeFilterList="" selector="//mal:comment"/>
+
   <its:translateRule translate="no" selector="//mal:credit/mal:email"/>
 
-  <itst:externalRefRule selector="//mal:media" refPointer="@src"/>
+  <its:externalResourceRefRule externalResourceRefPointer="@src" selector="//mal:media" />
 
   <itst:contextRule selector="//mal:info/mal:title[@type]" contextPointer="@type"/>
   <itst:contextRule selector="//mal:info/mal:title[@type and @role]" contextPointer="concat(@type, ':', @role)"/>
